@@ -13,6 +13,7 @@ class Analyzer:
     async def analyze(
         self,
         request: AnalysisRequest,
+        request_id: str,
     ) -> AnalysisResponse:
         prompt = f"""
 {SYSTEM_PROMPT}
@@ -40,4 +41,5 @@ Return ONLY valid JSON with this structure:
         return await self.llm.generate_structured(
             prompt,
             AnalysisResponse,
+            request_id=request_id,
         )

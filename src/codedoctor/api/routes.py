@@ -1,8 +1,9 @@
 from fastapi import APIRouter
-
+import uuid
 from codedoctor.llm.client import LLMClient
 from codedoctor.schemas.analysis import AnalysisRequest, AnalysisResponse
 from codedoctor.services.analyzer import Analyzer
+
 
 router = APIRouter()
 
@@ -17,7 +18,8 @@ async def analyze(
     request: AnalysisRequest,
 
 ) -> AnalysisResponse:
-    return await analyzer.analyze(request)
+    request_id = str(uuid.uuid4())
+    return await analyzer.analyze(request, request_id=request_id)
 
 @router.get("/health")
 async def health() ->dict[str, str]:

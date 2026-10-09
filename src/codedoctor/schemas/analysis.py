@@ -49,4 +49,5 @@ class Diagnosis(BaseModel):
     )
 
 class AnalysisResponse(BaseModel):
+    request_id: str
     diagnosis: Diagnosis
