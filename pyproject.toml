@@ -1,7 +1,7 @@
 [project]
 name = "codedoctor"
 version = "0.1.0"
-description = "Add your description here"
+description = "Code Doctor help programmer to identify they problem and solve it through AI"
 readme = "README.md"
 authors = [
     { name = "paul1231231", email = "pokpokli557@gmail.com" }
@@ -9,8 +9,11 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.143.0",
+    "guardrail-ai>=0.1.8",
+    "guardrails-ai-detect-pii>=0.0.6",
+    "guardrails-ai-prompt-injection-detector>=0.0.2",
     "litellm[proxy]>=1.83.0",
-    "openai>=3.26.1",
+    "openai>=1.30.1,<3.0.0",
     "pydantic>=2",
     "pydantic-settings>=2.15.0",
 ]

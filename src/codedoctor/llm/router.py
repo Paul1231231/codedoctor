@@ -4,9 +4,9 @@ from codedoctor.llm.models import ModelName
 def select_model(complexity: str) -> ModelName:
 
     if complexity == "simple":
-        return ModelName.CODEDOCTOR_QWEN
+        return ModelName.CODEDOCTOR_QWEN_SMALL
 
-    return ModelName.CODEDOCTOR_QWEN
+    return ModelName.CODEDOCTOR_QWEN_LARGE
 
 def classify_complexity(code: str, error: str) -> str:
     score = 0

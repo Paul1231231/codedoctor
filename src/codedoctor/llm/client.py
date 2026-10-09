@@ -4,6 +4,10 @@ from pydantic import BaseModel
 from openai import AsyncOpenAI
 
 from codedoctor.core.config import settings
+from codedoctor.security.security_checks import (
+    check_user_input,
+    check_llm_output,
+)
 
 logger = logging.getLogger(__name__)
 T = TypeVar("T", bound=BaseModel)
@@ -24,7 +28,7 @@ class LLMClient:
         schema: Type[T],
         request_id: str,
     ) -> T:
-
+        check_user_input(prompt)
         raw_response = (
             await self.client.chat.completions.with_raw_response.parse(
                 model=settings.model_name,
@@ -44,7 +48,7 @@ class LLMClient:
                 },
             )
         )
-
+        check_llm_output(raw_response.parse().choices[0].message.parsed)
         response = raw_response.parse()
         usage = response.usage
 
